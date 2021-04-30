@@ -19,6 +19,10 @@ function loadData(){
 			if(result.length){
 				let contentList = [];
 				$.each(result, (idx, a) => {
+					var identity = a.u_code;
+					if(identity == "A"){
+						identity = "관리자";
+					} else identity = "일반회원";
 					contentList.unshift(
 						`<tr>
 							<td>\${a.u_id}</td>
@@ -27,7 +31,7 @@ function loadData(){
 							<td>\${a.u_email}</td>
 							<td>\${a.u_address}</td>
 							<td>\${a.u_start_date}</td>
-							<td>\${a.u_code}</td>
+							<td>\${identity}</td>
 						</tr>`
 					);
 				})	
