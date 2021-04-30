@@ -105,7 +105,7 @@ $(init);
 		<div class='row'>
 			<label for="keyword" class="col-sm-2 col-form-label">유저 검색</label>
 			<div class='col-sm-5'>
-				<input type='text' class="form-control" id="keyword"/>
+				<input type='text' class="form-control" id="keyword" placeholder="이름이나 아이디를 입력하세요"/>
 			</div>
 			<div class='col'>
 				<button type="button" class="btn btn-secondary" id="search">검색</button>
