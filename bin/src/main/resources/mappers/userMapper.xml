@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserMapper">
+
+	<!-- parmetertype은 dao에서 괄호안에 파라미터값을따라간다 resulttype dao에 return 값을 따라간다 
+		언제 사용하고 안하고? -->
+	<insert id="getJoin">
+		INSERT INTO atworks_users(
+		u_id,
+		u_pwd,
+		u_name,
+		u_tel,
+		u_birth,
+		u_wedding,
+		u_p_birth,
+		u_email,
+		u_address
+		)
+		VALUES
+		(#{u_id},
+		#{u_pwd},
+		#{u_name},
+		#{u_tel},
+		#{u_birth},
+		#{u_wedding},
+		#{u_p_birth},
+		#{u_email},
+		#{u_address}
+		)
+	</insert>
+
+	<select id="check_id" parameterType="java.lang.String">
+		resultType="java.lang.String">
+		SELECT u_id
+		FROM atworks_users
+		WHERE u_id = #{u_id}
+	</select>
+
+	<select id="getlogin" resultType="com.atworks.hyy.dto.UserDto">
+		SELECT u_id, u_pwd
+		FROM
+		atworks_users
+		WHERE u_id = #{u_id} and u_pwd = #{u_pwd};
+	</select>
+
+</mapper>

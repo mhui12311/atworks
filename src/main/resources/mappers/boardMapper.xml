@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	<select id="selectList" resultType="kr.co.web.board.service.impl.BoardVO">
+		select seq, category, title, u_id, view_count, create_date, response_yn from atworks_qna
+		order by seq
+	</select>
+	
+	<insert id="insertQna">
+		insert into atworks_qna (u_id, title, contents)
+		values(#{u_id}, #{title}, #{contents})
+	</insert>
+	
+	<select id="selectDetail" resultType="kr.co.web.board.service.impl.BoardVO">
+		select * from atworks_qna
+		where seq = #{seq}
+	</select>
+	
+	<select id="selectWriterId" resultType="string">
+		select u_id from atworks_qna
+		where seq = #{seq}
+	</select>
+	
+	<update id="updateQna">
+		update atworks_qna
+		set response_contents = #{response_contents}
+		where seq = #{seq}
+	</update>
+	
+	<select id="selectResponseContents" resultType="string">
+		select response_contents from atworks_qna
+		where seq = #{seq}
+	</select>
+	
+	
+	<select id="selectReply" resultType="kr.co.web.board.service.impl.ReplyVO">
+		select * from atworks_reply
+		where qna_seq = #{qna_seq}
+	</select>
+	
+	<insert id="insertReply">
+		insert into atworks_reply (qna_seq, u_id, reply_contents)
+		values(
+			#{qna_seq},
+			#{u_id},
+			#{reply_contents}
+		)
+	</insert>
+	
+	<update id="changeReplyState">
+		update atworks_qna
+		set response_yn = '답변완료'
+		where seq = #{seq}
+	</update>
+</mapper>

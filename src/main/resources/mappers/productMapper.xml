@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="product">
+	<!-- <insert id="add"> insert into user values ( #{id}, #{pwd}, #{name}, 
+		now() ) </insert> <select id="list" resultType="kr.co.test.service.UserVO"> 
+		select * from user </select> <select id="list2" resultType="kr.co.test.service.UserVO"> 
+		select * from user where id = #{id} </select> <select id="check" parameterType="kr.co.test.service.UserVO" 
+		resultType="Integer"> select count(*) from user where id = #{id} and pwd 
+		= #{pwd} </select> -->
+
+	<insert id="insert_p" parameterType="kr.co.web.admin.service.impl.AdminVO">
+		insert into atworks_product (category, title, contents, price, writer, photo)
+		values ( #{category}, #{title}, #{contents}, #{price}, #{writer}, #{photo})
+	</insert>
+
+	<select id="select_p" resultType="kr.co.web.admin.service.impl.AdminVO">
+		select * from atworks_product
+	</select>
+
+	<select id="detail_p" resultType="kr.co.web.admin.service.impl.AdminVO">
+		select * from atworks_product where seq=#{seq}
+	</select>
+	
+	<select id="update_p" parameterType="kr.co.web.admin.service.impl.AdminVO">
+		update atworks_product set title=#{title}, price=#{price}, contents=#{contents}, photo=#{photo}
+		where seq=#{seq}
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.atworks.mapper.AT_MemberMapper">
+ 
+ <!-- 회원가입 -->
+<insert id="join">
+	insert into atworks_users (u_id, u_pwd, u_name, u_tel, u_birth, u_wedding, u_p_birth, u_email, u_address) values
+	(#{u_id}, #{u_pwd}, #{u_name}, #{u_tel}, #{u_birth}, #{u_wedding}, #{u_p_birth}, #{u_email}, #{u_address})
+</insert>
+
+
+<!-- 로그인 -->
+<select parameterType="String" id="login" resultType="com.atworks.kjh.domain.AT_MemberVO">
+	select u_id, u_pwd from atworks_users where u_id=#{u_id}
+</select>
+
+ 
+</mapper>

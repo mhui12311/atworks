@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+	<select id="check_id" resultType="int">
+		select count(*) from atworks_user where u_id = #{u_id}
+	</select>
+	
+	<insert id="insert_id" parameterType="kr.co.web.member.service.impl.MemberVO">
+		insert into atworks_user ( u_id, u_pwd, u_name, u_tel, u_birth, u_wedding, u_p_birth, u_email, u_address) 
+		values ( #{u_id}, #{u_pwd}, #{u_name}, #{u_tel}, #{u_birth}, #{u_wedding}, #{u_p_birth}, #{u_email}, #{u_address})
+	</insert>
+	
+	<select id="get_id" resultType="kr.co.web.member.service.impl.MemberVO">
+		select u_code, u_pwd from atworks_user where u_id = #{u_id}
+	</select>
+	
+	<select id="selectInfo" resultType="kr.co.web.member.service.impl.MemberVO">
+		select * from atworks_user where u_id like #{u_id}
+	</select>
+	
+	<select id="selectUcode" resultType="kr.co.web.member.service.impl.MemberVO">
+		select u_code from atworks_user
+		where u_id = #{u_id}
+	</select>
+	
+	<select id="selectList" resultType="kr.co.web.member.service.impl.MemberVO">
+		select * from atworks_user
+		order by u_code desc
+	</select>
+	
+	<update id="memberUpdate" parameterType="kr.co.web.member.service.impl.MemberVO">
+		update atworks_user set u_name=#{u_name}, u_email=#{u_email}, u_tel=#{u_tel}, u_address=#{u_address}
+		where u_id=#{u_id}
+	</update>
+	
+	<update id="memberPwdUpdate" parameterType="kr.co.web.member.service.impl.MemberVO">
+		update atworks_user set u_pwd=#{u_pwd} where u_id=#{u_id}
+	</update>
+	
+	<select id="selectMemberCount" resultType="int">
+		select COUNT(u_id) from atworks_user
+	</select>
+	
+	<select id="searchMember" resultType="kr.co.web.member.service.impl.MemberVO">
+		select * from atworks_user
+		where
+		u_id like CONCAT('%',#{keyword},'%')
+		or
+		u_name like CONCAT('%',#{keyword},'%')
+		order by u_code desc
+		
+	</select>
+	
+</mapper>
